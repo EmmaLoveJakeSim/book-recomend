@@ -1,0 +1,198 @@
+/* ========== Variables ========== */
+:root {
+  --bg-main: #1c208b;
+  --text-dark: #333;
+}
+
+/* ========== Fonts ========== */
+.font-eng {
+  font-family: "Gaegu", cursive, sans-serif !important;
+  font-weight: 700;
+  color: #333;
+  letter-spacing: 0.5px;
+}
+
+.font-thai {
+  font-family: "Noto Sans Thai", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+  color: #333;
+}
+
+/* ========== Base ========== */
+body {
+  background-color: var(--bg-main);
+}
+
+img {
+  max-width: 100%;
+}
+
+/* Heading 1 style */
+.heading-1 {
+  font-size: 1.6rem;
+  line-height: 1.2;
+}
+
+.section-text {
+  max-width: 900px;
+  font-size: 1.05rem;
+  line-height: 1.9;
+}
+
+/* ========== Header ========== */
+.site-header {
+  background-color: #fff;
+  padding: 0.75rem 0;
+}
+
+.logo {
+  height: 70px;
+  width: auto;
+}
+
+.site-header .nav-link {
+  font-size: 1.5rem;
+  transition: color 0.2s;
+}
+
+.site-header .nav-link:hover,
+.site-header .nav-link:focus-visible {
+  color: var(--bg-main);
+}
+
+/* ========== Hero ========== */
+.hero-section {
+  background-color: #000;
+  padding: 0;
+}
+
+.hero-section .row {
+  height: 520px;
+}
+
+/* ปกหนังสือ: แสดงครบทั้งใบ ไม่โดนตัด */
+.hero-left {
+  height: 100%;
+  padding: 2rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-book {
+  display: block;
+  height: 100%;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+/* รูปฝั่งขวา: ชิดขอบขวาของหน้าจอ เต็มความสูง Hero และเห็นครบทั้ง 7 คน */
+.hero-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-left {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-right {
+  padding: 0;
+}
+
+.hero-right img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: min(65vw, 815px);
+  object-fit: cover;
+  object-position: right center;
+}
+
+@media (max-width: 767.98px) {
+  .hero-section .row { height: auto; }
+  .hero-left { height: 420px; }
+  .hero-right { height: 260px; }
+  .hero-right img {
+    position: static;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+/* ========== Section 1 ========== */
+.section-intro {
+  background-color: #fff;
+  padding: 4.5rem 0;
+}
+
+/* ========== Section 2 ========== */
+.section-story {
+  background: #000 url("../images/sooha-backgroud.png") no-repeat left center / cover;
+  padding: 7rem 0;
+  min-height: 400px;  
+}
+
+.section-story .font-thai {
+  color: #fff;
+}
+
+/* ========== Section 3 : Reviews ========== */
+.section-reviews {
+  background-color: #fff;
+  padding: 4rem 0 3.5rem;
+}
+
+.reviews-title {
+  margin-bottom: 1rem;
+}
+
+/* ========== Members (7 equal columns) ========== */
+.section-members {
+  background-color: #fff;
+}
+
+.member-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (min-width: 992px) {
+  .col-custom-7 {
+    flex: 0 0 auto;
+    width: 14.2857%; /* 100 / 7 */
+  }
+}
+
+/* ========== Footer ========== */
+.site-footer {
+  background-color: #000;
+  padding: 0.6rem 0;
+}
+
+.site-footer small {
+  color: #bbb;
+}
+
+/* ========== Responsive ========== */
+@media (max-width: 767.98px) {
+  .section-story {
+    background-color: #000;
+    background-size: 100% auto;
+    background-position: top center;
+    padding: calc(45vw + 1.5rem) 0 3rem;
+    min-height: 0;
+  }
+  .section-story .container {
+    background: none;
+  }
+  .logo { height: 56px; }
+}

@@ -1,139 +1,696 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Dark Moon: The Blood Altar | Wanna Read a Book</title>
+  <meta name="theme-color" content="#100c10">
+  <meta name="description" content="รีวิว Dark Moon: The Blood Altar ฉบับภาษาไทย">
+  <title>Dark Moon | Wanna Read a Book</title>
 
-  <!-- Bootstrap 5 -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Google Fonts: Gaegu (ENG) + Noto Sans Thai (TH) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Noto+Sans+Thai:wght@100..900&display=swap" rel="stylesheet">
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom CSS -->
   <link rel="stylesheet" href="css/style.css">
-  
 </head>
+
 <body>
 
-  <!-- ================= HEADER ================= -->
+  <div class="reading-progress" id="readingProgress"></div>
+
+  <!-- HEADER -->
   <header class="site-header">
-    <div class="container">
-      <nav class="navbar navbar-expand-md px-0">
-        <a class="navbar-brand" href="#">
-          <img src="images/logo.png" alt="Wanna Read a Book" class="logo">
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#mainMenu" aria-controls="mainMenu"
-                aria-expanded="false" aria-label="เปิดเมนู">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-end" id="mainMenu">
-          <ul class="navbar-nav gap-md-4">
-            <li class="nav-item"><a class="nav-link font-eng heading-1" href="#">HOME</a></li>
-            <li class="nav-item"><a class="nav-link font-eng heading-1" href="#">GENRE</a></li>
-            <li class="nav-item"><a class="nav-link font-eng heading-1" href="#">FICTION</a></li>
-            <li class="nav-item"><a class="nav-link font-eng heading-1" href="#">NON-FICTION</a></li>
-          </ul>
-        </div>
-      </nav>
-    </div>
+    <nav class="navbar navbar-expand-lg container py-3">
+
+      <a class="navbar-brand brand" href="#home">
+        <span class="brand-mark bat-logo">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 60" width="34" height="28" fill="currentColor"
+            aria-hidden="true">
+            <path d="M50 20
+             C43 10 35 7 27 9
+             L30 19
+             C19 14 9 16 0 25
+             C9 27 13 35 16 45
+             C23 38 31 39 37 45
+             C40 37 45 33 50 32
+             C55 33 60 37 63 45
+             C69 39 77 38 84 45
+             C87 35 91 27 100 25
+             C91 16 81 14 70 19
+             L73 9
+             C65 7 57 10 50 20 Z" />
+          </svg>
+        </span>
+        <span>WANNA READ A BOOK 1009</span>
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainMenu"
+        aria-controls="mainMenu" aria-expanded="false" aria-label="เปิดเมนู">
+        <span class="menu-icon">☰</span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="mainMenu">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3">
+          <li><a class="nav-link" href="#home">HOME</a></li>
+          <li><a class="nav-link" href="#story">THE STORY</a></li>
+          <li><a class="nav-link" href="#review">REVIEW</a></li>
+          <li><a class="nav-link" href="#characters">CHARACTERS</a></li>
+        </ul>
+      </div>
+
+    </nav>
   </header>
 
   <main>
 
     <!-- ================= HERO ================= -->
-    <section class="hero-section">
+    <section class="hero" id="home">
+      <div class="hero-glow"></div>
+
+      <div class="container hero-grid">
+
+        <div class="hero-copy">
+          <p class="eyebrow">A TALE OF FATE, BLOOD & DESTINY</p>
+
+          <h1>DARK <span>MOON</span></h1>
+          <p class="hero-subtitle">THE BLOOD ALTAR</p>
+
+          <div class="hero-line"></div>
+
+          <p class="hero-description">
+            เมื่อความลับใต้แสงจันทร์นำพาให้หัวใจ
+            เข้าไปพัวพันกับโชคชะตาที่ไม่อาจหลีกหนี
+          </p>
+
+          <div class="hero-actions">
+            <a href="#review" class="btn-main">
+              สำรวจรีวิว <span>↗</span>
+            </a>
+
+            <a href="#story" class="text-link">
+              DISCOVER THE STORY
+            </a>
+          </div>
+
+          <p class="hero-note">
+            A BOOK REVIEW INSPIRED BY ENHYPEN
+          </p>
+        </div>
+
+        <div class="hero-art">
+          <div class="moon-orbit"></div>
+
+          <img src="images/dark%20moon.jpg" alt="ปกนิยาย Dark Moon: The Blood Altar ฉบับภาษาไทย" class="hero-book">
+
+          <span class="art-caption">
+            01 / THE BLOOD ALTAR
+          </span>
+        </div>
+
+      </div>
+
+      <a class="scroll-hint" href="#intro">
+        SCROLL TO DISCOVER ↓
+      </a>
+    </section>
+
+    <!-- ================= INTRO ================= -->
+    <section class="intro section-pad" id="intro">
+      <div class="container narrow text-center reveal">
+
+        <p class="eyebrow">BEYOND THE COVER</p>
+
+        <h2 class="section-title">
+          บางความลับ<br>เริ่มต้นจากความฝัน
+        </h2>
+
+        <p class="body-copy">
+          Dark Moon: The Blood Altar หรือ แท่นบูชาพระจันทร์
+          เป็นเรื่องราวแนวแฟนตาซีที่ผสมผสานความลึกลับ
+          ความสัมพันธ์ และโลกเหนือธรรมชาติ
+          เข้ากับจักรวาลเรื่องเล่าที่ได้รับแรงบันดาลใจจาก ENHYPEN
+        </p>
+
+        <div class="book-facts">
+          <div>
+            <span>GENRE</span>
+            <strong>Fantasy</strong>
+          </div>
+
+          <div>
+            <span>ATMOSPHERE</span>
+            <strong>Mysterious</strong>
+          </div>
+
+          <div>
+            <span>EDITION</span>
+            <strong>ภาษาไทย</strong>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= STORY ================= -->
+    <section class="story section-pad" id="story">
       <div class="container">
-        <div class="row">
-          <div class="col-sm-12 col-md-6 col-lg-6 hero-left">
-            <img src="images/dark%20moon.jpg" alt="หนังสือ Dark Moon: The Blood Altar" class="hero-book" data-aos="flip-right"  data-aos-duration="3000">
 
-          </div>
-          <div class="col-sm-12 col-md-4 col-lg-4 hero-right">
-            <img src="images/enhypen.jpg" alt="ENHYPEN" class="img-fluid">
-          </div>
+        <div class="story-panel reveal">
+          <p class="eyebrow">02 — THE STORY</p>
+
+          <h2 class="section-title">
+            A FATE WRITTEN<br>IN THE MOONLIGHT
+          </h2>
+
+          <p class="body-copy">
+            ซูอา เด็กสาวที่ปรารถนาจะใช้ชีวิตเป็นนักเรียนธรรมดา
+            กลับได้พบกับเด็กหนุ่มทั้งเจ็ดผู้ซ่อนความลับบางอย่างไว้
+            ความฝันที่เกิดขึ้นซ้ำ ๆ และภาพความทรงจำที่ยากจะอธิบาย
+            ค่อย ๆ เปิดประตูสู่ปริศนาที่เชื่อมโยงพวกเขาเข้าด้วยกัน
+          </p>
+
+          <p class="story-warning">
+            ✦ เรื่องย่อโดยย่อ — อ่านฉบับเต็มเพื่อค้นพบความลับด้วยตัวเอง
+          </p>
         </div>
+
       </div>
     </section>
 
-    <!-- ================= SECTION 1 ================= -->
-    <section class="section-intro">
-      <div class="container px-5 text-center ">
-        <p class="font-thai section-text mx-auto" data-aos="fade-up" data-aos-duration="3000">
-          วรรณกรรมแวมไพร์แฟนตาซีที่จะพาให้หัวใจเต้นไม่เป็นจังหวะ วรรณกรรมแนะนำที่ทุกสายแฟนตาซีไม่ควรพลาด!
-          "Dark Moon: The Blood Altar" หรือแท่นบูชาพระจันทร์ คือการผสมผสานระหว่างความลึกลับ โรแมนซ์
-          และเวทมนตร์ ในฉบับนิยายวัยรุ่นแฟนตาซีสุดเข้มข้น ที่ได้รับแรงบันดาลใจจากศิลปินดังอย่าง ENHYPEN
-          จากจักรวาล Original Story by HYBE ที่เคยสร้างปรากฏการณ์ยอดอ่านกว่า 3.3 ล้านวิวบน Wattpad!
-        </p>
-      </div>
-    </section>
-
-    <!-- ================= SECTION 2 ================= -->
-    <section class="section-story">
-      <div class="container px-5">
-        <div class="row">
-          <div class="col-12 col-md-6 offset-md-6 d-flex align-items-center justify-content-end"  data-aos="fade-left"   data-aos-duration="3000">
-            <p class="font-thai section-text text-white text-center mb-0">
-              เมื่อซูอาเด็กสาวที่ปรารถนาจะเป็นแค่นักเรียนธรรมดาได้พบกับเราเด็กหนุ่มทั้งเจ็ดซึ่งแท้จริงแล้วเป็นแวมไพร์
-              ความปรารถนาของเธอก็ต้องสิ้นสุดลงเพราะความฝันที่เกิดขึ้นซ้ำ ๆ ราวกับภาพฉากในความทรงจำที่ใช้ย้อนไปมา
-              หรือแท้จริงแล้วสิ่งนี้จะไม่ใช่แค่ความฝันแต่เป็นกุญแจที่จะไขปริศนาโชคชะตาระหว่างพวกเขาและเธอ!
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= SECTION 3 : REVIEWS ================= -->
-    <section class="section-reviews">
+    <!-- ================= THE MOON'S SECRET ================= -->
+    <section class="moon-secret section-pad" id="moonSecret">
       <div class="container text-center">
-        <h1 class="font-eng heading-1 reviews-title" >REVIEWS</h1>
-        <p class="font-thai section-text mx-auto">
-          ในฐานะที่เป็นเอนจีนหรือแฟนคลับวงเอนไฮเพน (ENHYPEN) เรื่องราวในเอ็มวีหรือเพลงมักจะสอดคล้องกับเนื้อหาของนิยายเสมอ
-          ทำให้รู้สึกตื่นเต้นเวลาได้อ่านเพราะทำให้ได้วิเคราะห์เอ็มวีในแต่ละเพลงไปด้วย อีกทั้งเนื้อหาและการดำเนินเรื่องยังมีความน่าสนใจ
-          พลังวิเศษของแต่ละตัวละครก็เหนือความคาดหมายมาก ๆ จึงรู้สึกว่าเล่มนี้เหมาะกับผู้อ่านทุกคน
-          แม้จะไม่ได้ติดตามวงเอนไฮเพนก็สามารถอ่านได้
-        </p>
+
+        <div class="moon-secret-content reveal">
+
+          <p class="eyebrow">THE MOON'S SECRET</p>
+
+          <div class="blood-moon" aria-hidden="true">
+            <div class="moon-surface"></div>
+          </div>
+
+          <p class="moon-secret-number">CHAPTER 00 — THE AWAKENING</p>
+
+          <h2 class="moon-secret-title">
+            EVERY SECRET<br>
+            HAS A <span>SHADOW.</span>
+          </h2>
+
+          <p class="moon-secret-description">
+            ใต้แสงจันทร์ที่สาดส่อง<br>
+            ทุกโชคชะตาล้วนมีเรื่องราวที่ถูกซ่อนไว้
+          </p>
+
+          <a href="#characters" class="moon-secret-link">
+            UNLOCK THE SECRET <span>↗</span>
+          </a>
+
+        </div>
+
       </div>
     </section>
 
-    <!-- ================= SECTION ENHYPEN ================= -->
-    <section class="section-members">
-      <div class="container-fluid p-0">
-        <div class="row g-0">
-          <div class="col-12 col-md-4 col-custom-7"><img src="images/jungwon.jpg"  alt="Jungwon"  class="member-img" data-aos="fade-up" data-aos-duration="2500"></div>
-          <div class="col-12 col-md-4 col-custom-7"><img src="images/heeseung.jpg" alt="Heeseung" class="member-img" data-aos="fade-down" data-aos-duration="2500"></div>
-          <div class="col-12 col-md-4 col-custom-7"><img src="images/jay.jpg"     alt="Jay"     class="member-img" data-aos="fade-up" data-aos-duration="2500"></div>
-          <div class="col-12 col-md-4 col-custom-7"><img src="images/jake.jpg"      alt="Jake"      class="member-img" data-aos="fade-down" data-aos-duration="2500" ></div>
-          <div class="col-12 col-md-4 col-custom-7"><img src="images/sunghoon.jpg" alt="Sunghoon" class="member-img" data-aos="fade-up" data-aos-duration="2500"></div>
-          <div class="col-12 col-md-4 col-custom-7"><img src="images/sunoo.jpg"    alt="Sunoo"    class="member-img" data-aos="fade-down" data-aos-duration="2500"></div>
-          <div class="col-12 col-md-4 col-custom-7"><img src="images/ni-ki.jpg"    alt="Ni-ki"    class="member-img" data-aos="fade-up" data-aos-duration="2500"></div>
+
+    <!-- ================= REVIEW ================= -->
+    <section class="review section-pad" id="review">
+      <div class="container">
+
+        <div class="review-heading reveal">
+          <p class="eyebrow">03 — PERSONAL JOURNAL</p>
+
+          <h2 class="section-title">
+            A READER'S <span>NOTE</span>
+          </h2>
+
+          <p class="body-copy">
+            ความรู้สึกหลังเปิดอ่าน และเหตุผลที่เรื่องนี้น่าค้นหา
+          </p>
+        </div>
+
+        <div class="review-grid">
+
+          <article class="review-card reveal">
+            <span class="card-number">01</span>
+
+            <h3>โลกของเรื่องราว</h3>
+
+            <p class="body-copy">
+              จุดที่น่าสนใจคือการผสมผสานเรื่องเหนือธรรมชาติเข้ากับ
+              ปริศนาของตัวละคร ทำให้มีเรื่องให้ติดตามและคาดเดาอยู่เสมอ
+            </p>
+          </article>
+
+          <article class="review-card reveal">
+            <span class="card-number">02</span>
+
+            <h3>ความสนุกสำหรับ ENGENE</h3>
+
+            <p class="body-copy">
+              แฟน ENHYPEN สามารถสนุกกับการเชื่อมโยงจักรวาลเรื่องเล่า
+              กับผลงานของวง และลองวิเคราะห์รายละเอียดที่พบระหว่างอ่าน
+            </p>
+          </article>
+
+          <article class="review-card reveal">
+            <span class="card-number">03</span>
+
+            <h3>เหมาะกับใคร</h3>
+
+            <p class="body-copy">
+              เหมาะสำหรับคนที่ชอบแฟนตาซี ความลึกลับ และเรื่องราว
+              เกี่ยวกับความสัมพันธ์ แม้ไม่ใช่แฟนคลับวงก็เริ่มอ่านได้
+            </p>
+          </article>
+
+        </div>
+
+        <div class="review-quote reveal">
+          <span>“</span>
+
+          <p>
+            เสน่ห์ของเรื่องนี้คือการได้ค่อย ๆ แกะรอยความลับ
+            ไปพร้อมกับตัวละคร
+          </p>
+
+          <small>— WANNA READ A BOOK</small>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= CHARACTERS ================= -->
+    <section class="character-section section-pad" id="characters">
+      <div class="container">
+
+        <div class="character-heading text-center reveal">
+          <p class="eyebrow">04 — THE SECRET FILES</p>
+
+          <h2 class="section-title">
+            SEVEN <span>SHADOWS</span>
+          </h2>
+
+          <p class="character-lead">
+            สมาชิกทั้งเจ็ด กับตัวตนที่ซ่อนอยู่ใต้แสงจันทร์
+          </p>
+
+          <p class="character-hint">
+            SELECT A MEMBER TO OPEN THEIR FILE
+          </p>
+        </div>
+
+        <!-- Bootstrap Responsive Grid -->
+        <div class="row g-3 g-md-4" id="memberGrid">
+
+          <!-- JUNGWON -->
+          <div class="col-6 col-md-4 col-lg-3">
+            <button type="button" class="member-card" data-member="jungwon">
+
+              <div class="member-image-wrap">
+                <img src="images/gallery/jungwon-2.jpg" alt="Jungwon" class="member-photo" loading="lazy">
+
+                <span class="member-index">FILE 01</span>
+                <span class="member-open">VIEW FILE ↗</span>
+              </div>
+
+              <div class="member-info">
+                <h3>JUNGWON</h3>
+                <p>JAKAH · HELI'S VAMPIRE CLAN</p>
+              </div>
+
+            </button>
+          </div>
+
+          <!-- HEESEUNG -->
+          <div class="col-6 col-md-4 col-lg-3">
+            <button type="button" class="member-card" data-member="heeseung">
+
+              <div class="member-image-wrap">
+                <img src="images/gallery/heeseung-2.jpg" alt="Heeseung" class="member-photo" loading="lazy">
+
+                <span class="member-index">FILE 02</span>
+                <span class="member-open">VIEW FILE ↗</span>
+              </div>
+
+              <div class="member-info">
+                <h3>HEESEUNG</h3>
+                <p>HELI · HELI'S VAMPIRE CLAN</p>
+              </div>
+
+            </button>
+          </div>
+
+          <!-- JAY -->
+          <div class="col-6 col-md-4 col-lg-3">
+            <button type="button" class="member-card" data-member="jay">
+
+              <div class="member-image-wrap">
+                <img src="images/gallery/jay-2.jpg" alt="Jay" class="member-photo" loading="lazy">
+
+                <span class="member-index">FILE 03</span>
+                <span class="member-open">VIEW FILE ↗</span>
+              </div>
+
+              <div class="member-info">
+                <h3>JAY</h3>
+                <p>JAAN · HELI'S VAMPIRE CLAN</p>
+              </div>
+
+            </button>
+          </div>
+
+          <!-- JAKE -->
+          <div class="col-6 col-md-4 col-lg-3">
+            <button type="button" class="member-card" data-member="jake">
+
+              <div class="member-image-wrap">
+                <img src="images/gallery/jake-2.jpg" alt="Jake" class="member-photo" loading="lazy">
+
+                <span class="member-index">FILE 04</span>
+                <span class="member-open">VIEW FILE ↗</span>
+              </div>
+
+              <div class="member-info">
+                <h3>JAKE</h3>
+                <p>JINO · HELI'S VAMPIRE CLAN</p>
+              </div>
+
+            </button>
+          </div>
+
+          <!-- SUNGHOON -->
+          <div class="col-6 col-md-4 col-lg-3">
+            <button type="button" class="member-card" data-member="sunghoon">
+
+              <div class="member-image-wrap">
+                <img src="images/gallery/sunghoon-2.jpg" alt="Sunghoon" class="member-photo" loading="lazy">
+
+                <span class="member-index">FILE 05</span>
+                <span class="member-open">VIEW FILE ↗</span>
+              </div>
+
+              <div class="member-info">
+                <h3>SUNGHOON</h3>
+                <p>SOLON · HELI'S VAMPIRE CLAN</p>
+              </div>
+
+            </button>
+          </div>
+
+          <!-- SUNOO -->
+          <div class="col-6 col-md-4 col-lg-3">
+            <button type="button" class="member-card" data-member="sunoo">
+
+              <div class="member-image-wrap">
+                <img src="images/gallery/sunoo-2.jpg" alt="Sunoo" class="member-photo" loading="lazy">
+
+                <span class="member-index">FILE 06</span>
+                <span class="member-open">VIEW FILE ↗</span>
+              </div>
+
+              <div class="member-info">
+                <h3>SUNOO</h3>
+                <p>SHION · HELI'S VAMPIRE CLAN</p>
+              </div>
+
+            </button>
+          </div>
+
+          <!-- NI-KI -->
+          <div class="col-6 col-md-4 col-lg-3">
+            <button type="button" class="member-card" data-member="niki">
+
+              <div class="member-image-wrap">
+                <img src="images/gallery/ni-ki-2.jpg" alt="Ni-ki" class="member-photo" loading="lazy">
+
+                <span class="member-index">FILE 07</span>
+                <span class="member-open">VIEW FILE ↗</span>
+              </div>
+
+              <div class="member-info">
+                <h3>NI-KI</h3>
+                <p>NOA · HELI'S VAMPIRE CLAN</p>
+              </div>
+
+            </button>
+          </div>
+
         </div>
       </div>
+    </section>
+
+    <!-- ================= CHARACTER MODAL ================= -->
+    <div class="modal fade" id="characterModal" tabindex="-1" aria-labelledby="characterModalTitle" aria-hidden="true">
+
+      <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content character-modal">
+
+          <!-- CLASSIFIED STAMP -->
+          <div class="classified-stamp" aria-hidden="true">
+            TOP SECRET
+          </div>
+
+
+          <!-- MODAL HEADER -->
+          <div class="modal-header">
+
+            <div>
+              <p class="eyebrow mb-1">
+                CLASSIFIED CHARACTER FILE
+              </p>
+
+
+              <h2 class="modal-title" id="characterModalTitle">
+                CLASSIFIED <span>ARCHIVE</span>
+              </h2>
+
+              <p class="archive-subtitle mb-0">
+                AUTHORIZED PERSONNEL ONLY
+              </p>
+
+            </div>
+
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+              aria-label="ปิดหน้าต่าง"></button>
+          </div>
+
+          <!-- MODAL BODY -->
+          <div class="modal-body">
+
+            <div class="row g-4 align-items-start">
+
+              <!-- LEFT: PHOTO GALLERY -->
+              <div class="col-12 col-md-6">
+
+                <div id="memberCarousel" class="carousel slide character-carousel" data-bs-interval="false"
+                  data-bs-touch="true">
+
+                  <div class="carousel-indicators"></div>
+
+                  <div class="carousel-inner"></div>
+
+                  <button class="carousel-control-prev" type="button" data-bs-target="#memberCarousel"
+                    data-bs-slide="prev" aria-label="รูปก่อนหน้า">
+
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  </button>
+
+                  <button class="carousel-control-next" type="button" data-bs-target="#memberCarousel"
+                    data-bs-slide="next" aria-label="รูปถัดไป">
+
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  </button>
+
+                </div>
+
+                <p class="gallery-caption text-center mt-3 mb-0">
+                  SWIPE OR USE ARROWS TO EXPLORE
+                </p>
+
+              </div>
+
+              <!-- RIGHT: CHARACTER PROFILE -->
+              <div class="col-12 col-md-6">
+
+                <p class="eyebrow mb-2">
+                  IDENTITY / DARK MOON
+                </p>
+
+                <h3 class="character-name" id="modalCharacterName">
+                  CHARACTER NAME
+                </h3>
+
+                <p class="character-subtitle">
+                  ENHYPEN MEMBER:
+                  <strong id="modalMemberName">-</strong>
+                </p>
+
+                <div class="character-divider"></div>
+
+                <h4 class="character-label">
+                  CHARACTER PROFILE
+                </h4>
+
+                <p class="character-description" id="modalDescription">
+                  รายละเอียดตัวละคร
+                </p>
+
+                <!-- SECRET AGENT DETAILS -->
+                <div class="agent-info mt-4">
+
+                  <h5 class="agent-info-title">
+                    TOP SECRET — AGENT FILE
+                  </h5>
+
+                  <div class="row g-3">
+
+                    <div class="col-6">
+                      <small>DATE OF BIRTH</small>
+                      <p id="modalBirthday">-</p>
+                    </div>
+
+                    <div class="col-6">
+                      <small>CITIZEN</small>
+                      <p id="modalCitizen">-</p>
+                    </div>
+
+                    <div class="col-6">
+                      <small>KNOWN OCCUPATION</small>
+                      <p id="modalOccupation">-</p>
+                    </div>
+
+                    <div class="col-6">
+                      <small>AGENT CODE</small>
+                      <p id="modalAgentCode">-</p>
+                    </div>
+
+                    <div class="col-12">
+                      <small>CODE NAME</small>
+                      <p id="modalCodeName">-</p>
+                    </div>
+
+                    <div class="col-4">
+                      <small>HEIGHT</small>
+                      <p id="modalHeight">-</p>
+                    </div>
+
+                    <div class="col-4">
+                      <small>HAIR COLOR</small>
+                      <p id="modalHairColor">-</p>
+                    </div>
+
+                    <div class="col-4">
+                      <small>EYE COLOR</small>
+                      <p id="modalEyeColor">-</p>
+                    </div>
+
+                  </div>
+                </div>
+
+                <span class="character-tag d-inline-block mt-4">
+                  DARK MOON UNIVERSE
+                </span>
+
+              </div>
+
+            </div>
+          </div>
+
+          <!-- MODAL FOOTER -->
+          <div class="modal-footer">
+
+            <span class="gallery-caption">
+               WANNA READ A BOOK
+            </span>
+
+            <button type="button" class="btn-close-file" data-bs-dismiss="modal">
+              CLOSE FILE ×
+            </button>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= FINAL CHAPTER ================= -->
+    <section class="final-chapter section-pad" id="finalChapter">
+
+      <div class="final-chapter-glow" aria-hidden="true"></div>
+
+      <div class="container text-center">
+
+        <div class="final-chapter-content reveal">
+
+          <span class="final-symbol" aria-hidden="true">☾</span>
+
+          <p class="eyebrow">
+            THE END IS ONLY THE BEGINNING
+          </p>
+
+          <h2 class="final-title">
+            THE STORY ENDS,<br>
+            <span>BUT THE MOON REMEMBERS.</span>
+          </h2>
+
+          <div class="final-divider"></div>
+
+          <p class="final-description">
+            ทุกเรื่องราวอาจมีหน้าสุดท้าย<br>
+            แต่บางความทรงจำจะยังคงอยู่ตลอดไป
+          </p>
+
+          <a href="#characters" class="final-button">
+            EXPLORE THE CHARACTERS <span>↗</span>
+          </a>
+
+          <p class="final-credit">
+            DARK MOON: THE BLOOD ALTAR
+          </p>
+
+        </div>
+
+      </div>
+
     </section>
 
   </main>
 
+
   <!-- ================= FOOTER ================= -->
   <footer class="site-footer">
-    <div class="container text-center">
-      <small class="font-thai">
-         Dark Moon: The Blood Altar &copy; HYBE &amp; Peony Books |
-         ENHYPEN &copy; BELIFT LAB
+    <div class="container footer-inner">
+
+      <a href="#home" class="brand footer-brand">
+        <span>WANNA READ A BOOK</span>
+      </a>
+
+      <p>อ่านเรื่องราวให้ลึกกว่าหน้าปก</p>
+
+      <small>
+        Dark Moon: The Blood Altar © HYBE / Peony Books
+        · ENHYPEN © BELIFT LAB
       </small>
+
+      <button type="button" id="backToTop" class="back-top" aria-label="กลับขึ้นด้านบน">
+        ↑
+      </button>
+
     </div>
   </footer>
 
-
-
-  <!-- Bootstrap JS -->
+  <!-- Bootstrap JavaScript -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>
-    AOS.init();
-  </script>
+
+  <!-- Custom JavaScript -->
+  <script src="js/script.js"></script>
 
 </body>
 

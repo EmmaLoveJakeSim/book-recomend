@@ -1,697 +1,342 @@
 <!DOCTYPE html>
 <html lang="th">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#100c10">
-  <meta name="description" content="รีวิว Dark Moon: The Blood Altar ฉบับภาษาไทย">
-  <title>Dark Moon | Wanna Read a Book</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Odyssey | BOOK</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chonburi&family=Noto+Sans+Thai+Looped:wght@300;400;600;700&family=Playfair+Display:ital,wght@1,800;1,900&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+<!-- CSS ฝังไว้ในไฟล์นี้เพื่อให้ใช้ได้ทันที (สำเนาเดียวกันอยู่ใน style.css) -->
+<style>
+/* =========================================================
+   เลย์เอาต์ — The Odyssey
+   ทุกค่าเป็นพิกเซลของภาพต้นฉบับ (กว้าง 1366px)
+   ตำแหน่งรูปตกแต่ง + สีพื้น อยู่ใน index.html (inline style)
+   ไฟล์นี้จัดโครงร่าง: topbar, ตัวอักษร, การ์ด, แถบคำคม
+   ========================================================= */
+:root{
+  --font-th:"Noto Sans Thai Looped","Sarabun",sans-serif;
+  --font-display:"Chonburi","Noto Sans Thai Looped",serif;
+  --font-en:"Playfair Display",serif;
+  --nav-h:98px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:var(--nav-h)}
+body{font-family:var(--font-th);color:#fff;overflow-x:hidden}
+img{display:block;max-width:none;height:auto;user-select:none;-webkit-user-drag:none}
+ul{list-style:none}
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+/* ================= TOPBAR ================= */
+.topbar{
+  position:sticky;top:0;z-index:100;height:var(--nav-h);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 34px 0 78px;
+  transition:height .3s ease, box-shadow .3s ease;
+}
+.topbar.scrolled{height:72px;box-shadow:0 6px 24px rgba(0,0,40,.55)}
+.logo img{width:148px;transition:transform .3s ease}
+.logo:hover img{transform:scale(1.06)}
 
-  <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet">
+.menu{display:flex;align-items:center;gap:45px}
+.menu a{
+  position:relative;padding:8px 0;
+  font:500 17px/1 "Poppins",sans-serif;letter-spacing:.04em;text-transform:uppercase;
+  color:#fff;text-decoration:none;transition:color .25s ease;
+}
+.menu a:not(.cta)::after{
+  content:"";position:absolute;left:0;bottom:0;width:100%;height:2px;border-radius:2px;
+  background:linear-gradient(90deg,#8fb8ff,#fff);
+  transform:scaleX(0);transform-origin:right;transition:transform .35s ease;
+}
+.menu a:not(.cta):hover,.menu a.active{color:#cfe0ff}
+.menu a:not(.cta):hover::after,.menu a.active::after{transform:scaleX(1);transform-origin:left}
 
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+.menu .cta{
+  width:219px;height:76px;margin-left:6px;display:grid;place-items:center;
+  background:#fff;color:#12127a;border-radius:99px;
+  font-weight:700;font-size:19px;letter-spacing:.09em;
+  transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
+}
+.menu .cta:hover{transform:translateY(-3px) scale(1.04);background:#e6efff;box-shadow:0 10px 26px rgba(120,170,255,.55)}
+.menu .cta:active{transform:scale(.97)}
+.menu a:focus-visible,.burger:focus-visible{outline:2px solid #8fb8ff;outline-offset:4px;border-radius:6px}
 
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="css/style.css">
+.burger{display:none;background:none;border:0;cursor:pointer;width:42px;height:34px;position:relative}
+.burger span{position:absolute;left:6px;right:6px;height:3px;border-radius:3px;background:#fff;transition:.3s}
+.burger span:nth-child(1){top:7px}
+.burger span:nth-child(2){top:15px}
+.burger span:nth-child(3){top:23px}
+.burger.open span:nth-child(1){top:15px;transform:rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){top:15px;transform:rotate(-45deg)}
+
+/* ================= STAGE ================= */
+.stage-wrap{position:relative;width:100%;overflow:hidden}
+.stage{position:absolute;left:0;top:0;width:1366px;height:1438px;transform-origin:0 0}
+
+/* ทุกชิ้นในผืนผ้าใบใช้ absolute */
+.stage > *{position:absolute}
+.bg,.band-bg{left:0;width:1366px}
+.anchor{left:0;width:1366px;visibility:hidden;pointer-events:none}
+.deco{pointer-events:none;object-fit:contain;object-position:center}
+
+/* ---------- HERO ---------- */
+.glass-card{border-radius:137px 82px 96px 96px;border:1.5px solid rgba(255,255,255,.35);
+  box-shadow:inset 0 0 40px rgba(255,255,255,.08)}
+.q1,.q2{font-family:var(--font-en);font-style:italic;white-space:nowrap;line-height:1;margin:0;
+  text-shadow:0 0 22px rgba(160,200,255,.7)}
+.q1{left:28px;top:36px;font-weight:900;font-size:80px;color:#fff}
+.q2{left:212px;top:106px;font-weight:800;font-size:50px;color:#dce8ff}
+
+.intro{left:120px;top:206px;width:625px;font-size:19px;line-height:38.5px;font-weight:300;color:#eef3ff}
+
+.trials{left:398px;top:369px}
+.trials li{display:flex;align-items:center;gap:17px;height:56px;
+  font-size:22px;font-style:italic;font-weight:700;color:#dfe9ff;
+  text-shadow:0 0 14px rgba(150,190,255,.55);transition:transform .3s ease}
+.trials li:hover{transform:translateX(10px)}
+.trials li img{width:26px;flex:none}
+
+/* ---------- ABOUT ---------- */
+.about-title{left:83px;top:700px;font-family:var(--font-display);font-weight:400;
+  font-size:66px;line-height:1.2;white-space:nowrap;color:#fff}
+.about-title span{font-size:38px}
+.about-sub{left:90px;top:830px;width:960px;font-size:19.5px;line-height:34px;font-weight:300;color:#fff}
+
+/* ---------- CARDS ---------- */
+.card{
+  border-radius:40px;border:2px solid rgba(255,255,255,.55);
+  display:flex;flex-direction:column;align-items:center;
+  padding:13px 24px 0;text-align:center;
+  box-shadow:0 0 30px rgba(110,150,255,.15);
+  transition:transform .3s ease, box-shadow .3s ease;
+}
+.card:hover{transform:translateY(-10px);box-shadow:0 16px 38px rgba(120,170,255,.4)}
+.card img{width:80px}
+.card h3{margin-top:18px;font-family:var(--font-display);font-weight:400;font-size:23px;line-height:1.3;color:#cfe0ff}
+.card p{position:relative;margin-top:16px;padding-left:14px;font-size:18.5px;line-height:36px;font-weight:300;color:#fff}
+.card p::before{content:"";position:absolute;left:-8px;top:17px;width:4px;height:4px;border-radius:50%;background:#fff}
+.card.small p{font-size:17.5px;line-height:33px;margin-top:10px}
+
+/* ---------- BOTTOM BAR (แถบคำคมล่างสุด) ---------- */
+.bottom-bar{left:0;top:1300px;width:1366px;height:138px;background:#161776}
+.bottom-bar p{position:absolute;margin:0;white-space:nowrap;font-family:var(--font-display);color:#fff;font-size:36px;line-height:43px}
+.band-q1{left:56px;top:23px}
+.band-q2{right:106px;top:78px;text-align:right}
+.band-q2 b{font-weight:400;font-size:62px;line-height:0;vertical-align:-6px;
+  background:linear-gradient(180deg,#a9c9ff,#5f8ff0);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* ================= MOBILE MENU ================= */
+@media (max-width:820px){
+  :root{--nav-h:64px}
+  .topbar{padding:0 18px}
+  .topbar.scrolled{height:56px}
+  .logo img{width:104px}
+  .burger{display:block}
+  .menu{position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;
+    background:rgba(18,18,122,.98);max-height:0;overflow:hidden;transition:max-height .4s ease}
+  .menu.open{max-height:380px;box-shadow:0 14px 28px rgba(0,0,40,.5)}
+  .menu a{font-size:16px;padding:16px 24px;border-bottom:1px solid rgba(255,255,255,.1)}
+  .menu a:not(.cta)::after{display:none}
+  .menu .cta{width:auto;height:48px;margin:16px 24px;font-size:16px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none !important;scroll-behavior:auto !important}}
+
+</style>
 </head>
-
-<body>
-
-  <div class="reading-progress" id="readingProgress"></div>
-
-  <!-- HEADER -->
-  <header class="site-header">
-    <nav class="navbar navbar-expand-lg container py-3">
-
-      <a class="navbar-brand brand" href="#home">
-        <span class="brand-mark bat-logo">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 60" width="34" height="28" fill="currentColor"
-            aria-hidden="true">
-            <path d="M50 20
-             C43 10 35 7 27 9
-             L30 19
-             C19 14 9 16 0 25
-             C9 27 13 35 16 45
-             C23 38 31 39 37 45
-             C40 37 45 33 50 32
-             C55 33 60 37 63 45
-             C69 39 77 38 84 45
-             C87 35 91 27 100 25
-             C91 16 81 14 70 19
-             L73 9
-             C65 7 57 10 50 20 Z" />
-          </svg>
-        </span>
-        <span>WANNA READ A BOOK 1009</span>
-      </a>
-
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainMenu"
-        aria-controls="mainMenu" aria-expanded="false" aria-label="เปิดเมนู">
-        <span class="menu-icon">☰</span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="mainMenu">
-        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3">
-          <li><a class="nav-link" href="#home">HOME</a></li>
-          <li><a class="nav-link" href="#story">THE STORY</a></li>
-          <li><a class="nav-link" href="#review">REVIEW</a></li>
-          <li><a class="nav-link" href="#characters">CHARACTERS</a></li>
-        </ul>
-      </div>
-
-    </nav>
-  </header>
-
-  <main>
-
-    <!-- ================= HERO ================= -->
-    <section class="hero" id="home">
-      <div class="hero-glow"></div>
-
-      <div class="container hero-grid">
-
-        <div class="hero-copy">
-          <p class="eyebrow">A TALE OF FATE, BLOOD & DESTINY</p>
-
-          <h1>DARK <span>MOON</span></h1>
-          <p class="hero-subtitle">THE BLOOD ALTAR</p>
-
-          <div class="hero-line"></div>
-
-          <p class="hero-description">
-            เมื่อความลับใต้แสงจันทร์นำพาให้หัวใจ
-            เข้าไปพัวพันกับโชคชะตาที่ไม่อาจหลีกหนี
-          </p>
-
-          <div class="hero-actions">
-            <a href="#review" class="btn-main">
-              สำรวจรีวิว <span>↗</span>
-            </a>
-
-            <a href="#story" class="text-link">
-              DISCOVER THE STORY
-            </a>
-          </div>
-
-          <p class="hero-note">
-            A BOOK REVIEW INSPIRED BY ENHYPEN
-          </p>
-        </div>
-
-        <div class="hero-art">
-          <div class="moon-orbit"></div>
-
-          <img src="images/dark%20moon.jpg" alt="ปกนิยาย Dark Moon: The Blood Altar ฉบับภาษาไทย" class="hero-book">
-
-          <span class="art-caption">
-            01 / THE BLOOD ALTAR
-          </span>
-        </div>
-
-      </div>
-
-      <a class="scroll-hint" href="#intro">
-        SCROLL TO DISCOVER ↓
-      </a>
-    </section>
-
-    <!-- ================= INTRO ================= -->
-    <section class="intro section-pad" id="intro">
-      <div class="container narrow text-center reveal">
-
-        <p class="eyebrow">BEYOND THE COVER</p>
-
-        <h2 class="section-title">
-          บางความลับ<br>เริ่มต้นจากความฝัน
-        </h2>
-
-        <p class="body-copy">
-          Dark Moon: The Blood Altar หรือ แท่นบูชาพระจันทร์
-          เป็นเรื่องราวแนวแฟนตาซีที่ผสมผสานความลึกลับ
-          ความสัมพันธ์ และโลกเหนือธรรมชาติ
-          เข้ากับจักรวาลเรื่องเล่าที่ได้รับแรงบันดาลใจจาก ENHYPEN
-        </p>
-
-        <div class="book-facts">
-          <div>
-            <span>GENRE</span>
-            <strong>Fantasy</strong>
-          </div>
-
-          <div>
-            <span>ATMOSPHERE</span>
-            <strong>Mysterious</strong>
-          </div>
-
-          <div>
-            <span>EDITION</span>
-            <strong>ภาษาไทย</strong>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ================= STORY ================= -->
-    <section class="story section-pad" id="story">
-      <div class="container">
-
-        <div class="story-panel reveal">
-          <p class="eyebrow">02 — THE STORY</p>
-
-          <h2 class="section-title">
-            A FATE WRITTEN<br>IN THE MOONLIGHT
-          </h2>
-
-          <p class="body-copy">
-            ซูอา เด็กสาวที่ปรารถนาจะใช้ชีวิตเป็นนักเรียนธรรมดา
-            กลับได้พบกับเด็กหนุ่มทั้งเจ็ดผู้ซ่อนความลับบางอย่างไว้
-            ความฝันที่เกิดขึ้นซ้ำ ๆ และภาพความทรงจำที่ยากจะอธิบาย
-            ค่อย ๆ เปิดประตูสู่ปริศนาที่เชื่อมโยงพวกเขาเข้าด้วยกัน
-          </p>
-
-          <p class="story-warning">
-            ✦ เรื่องย่อโดยย่อ — อ่านฉบับเต็มเพื่อค้นพบความลับด้วยตัวเอง
-          </p>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ================= THE MOON'S SECRET ================= -->
-    <section class="moon-secret section-pad" id="moonSecret">
-      <div class="container text-center">
-
-        <div class="moon-secret-content reveal">
-
-          <p class="eyebrow">THE MOON'S SECRET</p>
-
-          <div class="blood-moon" aria-hidden="true">
-            <div class="moon-surface"></div>
-          </div>
-
-          <p class="moon-secret-number">CHAPTER 00 — THE AWAKENING</p>
-
-          <h2 class="moon-secret-title">
-            EVERY SECRET<br>
-            HAS A <span>SHADOW.</span>
-          </h2>
-
-          <p class="moon-secret-description">
-            ใต้แสงจันทร์ที่สาดส่อง<br>
-            ทุกโชคชะตาล้วนมีเรื่องราวที่ถูกซ่อนไว้
-          </p>
-
-          <a href="#characters" class="moon-secret-link">
-            UNLOCK THE SECRET <span>↗</span>
-          </a>
-
-        </div>
-
-      </div>
-    </section>
-
-
-    <!-- ================= REVIEW ================= -->
-    <section class="review section-pad" id="review">
-      <div class="container">
-
-        <div class="review-heading reveal">
-          <p class="eyebrow">03 — PERSONAL JOURNAL</p>
-
-          <h2 class="section-title">
-            A READER'S <span>NOTE</span>
-          </h2>
-
-          <p class="body-copy">
-            ความรู้สึกหลังเปิดอ่าน และเหตุผลที่เรื่องนี้น่าค้นหา
-          </p>
-        </div>
-
-        <div class="review-grid">
-
-          <article class="review-card reveal">
-            <span class="card-number">01</span>
-
-            <h3>โลกของเรื่องราว</h3>
-
-            <p class="body-copy">
-              จุดที่น่าสนใจคือการผสมผสานเรื่องเหนือธรรมชาติเข้ากับ
-              ปริศนาของตัวละคร ทำให้มีเรื่องให้ติดตามและคาดเดาอยู่เสมอ
-            </p>
-          </article>
-
-          <article class="review-card reveal">
-            <span class="card-number">02</span>
-
-            <h3>ความสนุกสำหรับ ENGENE</h3>
-
-            <p class="body-copy">
-              แฟน ENHYPEN สามารถสนุกกับการเชื่อมโยงจักรวาลเรื่องเล่า
-              กับผลงานของวง และลองวิเคราะห์รายละเอียดที่พบระหว่างอ่าน
-            </p>
-          </article>
-
-          <article class="review-card reveal">
-            <span class="card-number">03</span>
-
-            <h3>เหมาะกับใคร</h3>
-
-            <p class="body-copy">
-              เหมาะสำหรับคนที่ชอบแฟนตาซี ความลึกลับ และเรื่องราว
-              เกี่ยวกับความสัมพันธ์ แม้ไม่ใช่แฟนคลับวงก็เริ่มอ่านได้
-            </p>
-          </article>
-
-        </div>
-
-        <div class="review-quote reveal">
-          <span>“</span>
-
-          <p>
-            เสน่ห์ของเรื่องนี้คือการได้ค่อย ๆ แกะรอยความลับ
-            ไปพร้อมกับตัวละคร
-          </p>
-
-          <small>— WANNA READ A BOOK 1009</small>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ================= CHARACTERS ================= -->
-    <section class="character-section section-pad" id="characters">
-      <div class="container">
-
-        <div class="character-heading text-center reveal">
-          <p class="eyebrow">04 — THE SECRET FILES</p>
-
-          <h2 class="section-title">
-            SEVEN <span>SHADOWS</span>
-          </h2>
-
-          <p class="character-lead">
-            สมาชิกทั้งเจ็ด กับตัวตนที่ซ่อนอยู่ใต้แสงจันทร์
-          </p>
-
-          <p class="character-hint">
-            SELECT A MEMBER TO OPEN THEIR FILE
-          </p>
-        </div>
-
-        <!-- Bootstrap Responsive Grid -->
-        <div class="row g-3 g-md-4" id="memberGrid">
-
-          <!-- JUNGWON -->
-          <div class="col-6 col-md-4 col-lg-3">
-            <button type="button" class="member-card" data-member="jungwon">
-
-              <div class="member-image-wrap">
-                <img src="images/gallery/jungwon-2.jpg" alt="Jungwon" class="member-photo" loading="lazy">
-
-                <span class="member-index">FILE 01</span>
-                <span class="member-open">VIEW FILE ↗</span>
-              </div>
-
-              <div class="member-info">
-                <h3>JUNGWON</h3>
-                <p>JAKAH · HELI'S VAMPIRE CLAN</p>
-              </div>
-
-            </button>
-          </div>
-
-          <!-- HEESEUNG -->
-          <div class="col-6 col-md-4 col-lg-3">
-            <button type="button" class="member-card" data-member="heeseung">
-
-              <div class="member-image-wrap">
-                <img src="images/gallery/heeseung-2.jpg" alt="Heeseung" class="member-photo" loading="lazy">
-
-                <span class="member-index">FILE 02</span>
-                <span class="member-open">VIEW FILE ↗</span>
-              </div>
-
-              <div class="member-info">
-                <h3>HEESEUNG</h3>
-                <p>HELI · HELI'S VAMPIRE CLAN</p>
-              </div>
-
-            </button>
-          </div>
-
-          <!-- JAY -->
-          <div class="col-6 col-md-4 col-lg-3">
-            <button type="button" class="member-card" data-member="jay">
-
-              <div class="member-image-wrap">
-                <img src="images/gallery/jay-2.jpg" alt="Jay" class="member-photo" loading="lazy">
-
-                <span class="member-index">FILE 03</span>
-                <span class="member-open">VIEW FILE ↗</span>
-              </div>
-
-              <div class="member-info">
-                <h3>JAY</h3>
-                <p>JAAN · HELI'S VAMPIRE CLAN</p>
-              </div>
-
-            </button>
-          </div>
-
-          <!-- JAKE -->
-          <div class="col-6 col-md-4 col-lg-3">
-            <button type="button" class="member-card" data-member="jake">
-
-              <div class="member-image-wrap">
-                <img src="images/gallery/jake-2.jpg" alt="Jake" class="member-photo" loading="lazy">
-
-                <span class="member-index">FILE 04</span>
-                <span class="member-open">VIEW FILE ↗</span>
-              </div>
-
-              <div class="member-info">
-                <h3>JAKE</h3>
-                <p>JINO · HELI'S VAMPIRE CLAN</p>
-              </div>
-
-            </button>
-          </div>
-
-          <!-- SUNGHOON -->
-          <div class="col-6 col-md-4 col-lg-3">
-            <button type="button" class="member-card" data-member="sunghoon">
-
-              <div class="member-image-wrap">
-                <img src="images/gallery/sunghoon-2.jpg" alt="Sunghoon" class="member-photo" loading="lazy">
-
-                <span class="member-index">FILE 05</span>
-                <span class="member-open">VIEW FILE ↗</span>
-              </div>
-
-              <div class="member-info">
-                <h3>SUNGHOON</h3>
-                <p>SOLON · HELI'S VAMPIRE CLAN</p>
-              </div>
-
-            </button>
-          </div>
-
-          <!-- SUNOO -->
-          <div class="col-6 col-md-4 col-lg-3">
-            <button type="button" class="member-card" data-member="sunoo">
-
-              <div class="member-image-wrap">
-                <img src="images/gallery/sunoo-2.jpg" alt="Sunoo" class="member-photo" loading="lazy">
-
-                <span class="member-index">FILE 06</span>
-                <span class="member-open">VIEW FILE ↗</span>
-              </div>
-
-              <div class="member-info">
-                <h3>SUNOO</h3>
-                <p>SHION · HELI'S VAMPIRE CLAN</p>
-              </div>
-
-            </button>
-          </div>
-
-          <!-- NI-KI -->
-          <div class="col-6 col-md-4 col-lg-3">
-            <button type="button" class="member-card" data-member="niki">
-
-              <div class="member-image-wrap">
-                <img src="images/gallery/ni-ki-2.jpg" alt="Ni-ki" class="member-photo" loading="lazy">
-
-                <span class="member-index">FILE 07</span>
-                <span class="member-open">VIEW FILE ↗</span>
-              </div>
-
-              <div class="member-info">
-                <h3>NI-KI</h3>
-                <p>NOA · HELI'S VAMPIRE CLAN</p>
-              </div>
-
-            </button>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= CHARACTER MODAL ================= -->
-    <div class="modal fade" id="characterModal" tabindex="-1" aria-labelledby="characterModalTitle" aria-hidden="true">
-
-      <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
-        <div class="modal-content character-modal">
-
-          <!-- CLASSIFIED STAMP -->
-          <div class="classified-stamp" aria-hidden="true">
-            TOP SECRET
-          </div>
-
-
-          <!-- MODAL HEADER -->
-          <div class="modal-header">
-
-            <div>
-              <p class="eyebrow mb-1">
-                CLASSIFIED CHARACTER FILE
-              </p>
-
-
-              <h2 class="modal-title" id="characterModalTitle">
-                CLASSIFIED <span>ARCHIVE</span>
-              </h2>
-
-              <p class="archive-subtitle mb-0">
-                AUTHORIZED PERSONNEL ONLY
-              </p>
-
-            </div>
-
-            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-              aria-label="ปิดหน้าต่าง"></button>
-          </div>
-
-          <!-- MODAL BODY -->
-          <div class="modal-body">
-
-            <div class="row g-4 align-items-start">
-
-              <!-- LEFT: PHOTO GALLERY -->
-              <div class="col-12 col-md-6">
-
-                <div id="memberCarousel" class="carousel slide character-carousel" data-bs-interval="false"
-                  data-bs-touch="true">
-
-                  <div class="carousel-indicators"></div>
-
-                  <div class="carousel-inner"></div>
-
-                  <button class="carousel-control-prev" type="button" data-bs-target="#memberCarousel"
-                    data-bs-slide="prev" aria-label="รูปก่อนหน้า">
-
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  </button>
-
-                  <button class="carousel-control-next" type="button" data-bs-target="#memberCarousel"
-                    data-bs-slide="next" aria-label="รูปถัดไป">
-
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  </button>
-
-                </div>
-
-                <p class="gallery-caption text-center mt-3 mb-0">
-                  SWIPE OR USE ARROWS TO EXPLORE
-                </p>
-
-              </div>
-
-              <!-- RIGHT: CHARACTER PROFILE -->
-              <div class="col-12 col-md-6">
-
-                <p class="eyebrow mb-2">
-                  IDENTITY / DARK MOON
-                </p>
-
-                <h3 class="character-name" id="modalCharacterName">
-                  CHARACTER NAME
-                </h3>
-
-                <p class="character-subtitle">
-                  ENHYPEN MEMBER:
-                  <strong id="modalMemberName">-</strong>
-                </p>
-
-                <div class="character-divider"></div>
-
-                <h4 class="character-label">
-                  CHARACTER PROFILE
-                </h4>
-
-                <p class="character-description" id="modalDescription">
-                  รายละเอียดตัวละคร
-                </p>
-
-                <!-- SECRET AGENT DETAILS -->
-                <div class="agent-info mt-4">
-
-                  <h5 class="agent-info-title">
-                    TOP SECRET — AGENT FILE
-                  </h5>
-
-                  <div class="row g-3">
-
-                    <div class="col-6">
-                      <small>DATE OF BIRTH</small>
-                      <p id="modalBirthday">-</p>
-                    </div>
-
-                    <div class="col-6">
-                      <small>CITIZEN</small>
-                      <p id="modalCitizen">-</p>
-                    </div>
-
-                    <div class="col-6">
-                      <small>KNOWN OCCUPATION</small>
-                      <p id="modalOccupation">-</p>
-                    </div>
-
-                    <div class="col-6">
-                      <small>AGENT CODE</small>
-                      <p id="modalAgentCode">-</p>
-                    </div>
-
-                    <div class="col-12">
-                      <small>CODE NAME</small>
-                      <p id="modalCodeName">-</p>
-                    </div>
-
-                    <div class="col-4">
-                      <small>HEIGHT</small>
-                      <p id="modalHeight">-</p>
-                    </div>
-
-                    <div class="col-4">
-                      <small>HAIR COLOR</small>
-                      <p id="modalHairColor">-</p>
-                    </div>
-
-                    <div class="col-4">
-                      <small>EYE COLOR</small>
-                      <p id="modalEyeColor">-</p>
-                    </div>
-
-                  </div>
-                </div>
-
-                <span class="character-tag d-inline-block mt-4">
-                  DARK MOON UNIVERSE
-                </span>
-
-              </div>
-
-            </div>
-          </div>
-
-          <!-- MODAL FOOTER -->
-          <div class="modal-footer">
-
-            <span class="gallery-caption">
-               WANNA READ A BOOK 1009
-            </span>
-
-            <button type="button" class="btn-close-file" data-bs-dismiss="modal">
-              CLOSE FILE ×
-            </button>
-
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-    <!-- ================= FINAL CHAPTER ================= -->
-    <section class="final-chapter section-pad" id="finalChapter">
-
-      <div class="final-chapter-glow" aria-hidden="true"></div>
-
-      <div class="container text-center">
-
-        <div class="final-chapter-content reveal">
-
-          <span class="final-symbol" aria-hidden="true">☾</span>
-
-          <p class="eyebrow">
-            THE END IS ONLY THE BEGINNING
-          </p>
-
-          <h2 class="final-title">
-            THE STORY ENDS,<br>
-            <span>BUT THE MOON REMEMBERS.</span>
-          </h2>
-
-          <div class="final-divider"></div>
-
-          <p class="final-description">
-            ทุกเรื่องราวอาจมีหน้าสุดท้าย<br>
-            แต่บางความทรงจำจะยังคงอยู่ตลอดไป
-          </p>
-
-          <a href="#characters" class="final-button">
-            EXPLORE THE CHARACTERS <span>↗</span>
-          </a>
-
-          <p class="final-credit">
-            DARK MOON: THE BLOOD ALTAR
-          </p>
-
-        </div>
-
-      </div>
-
-    </section>
-
-  </main>
-
-
-  <!-- ================= FOOTER ================= -->
-  <footer class="site-footer">
-    <div class="container footer-inner">
-
-      <a href="#home" class="brand footer-brand">
-        <span>WANNA READ A BOOK 1009</span>
-      </a>
-
-      <p>อ่านเรื่องราวให้ลึกกว่าหน้าปก</p>
-
-      <small>
-        Dark Moon: The Blood Altar © HYBE / Peony Books
-        · ENHYPEN © BELIFT LAB
-      </small>
-
-      <button type="button" id="backToTop" class="back-top" aria-label="กลับขึ้นด้านบน">
-        ↑
-      </button>
-
-    </div>
+<body style="background:#000">
+
+<!-- ================= TOPBAR ================= -->
+<header class="topbar" id="topbar" style="background:#161776">
+  <a class="logo" href="#home" aria-label="BOOK"><img src="/images/book logo.png" alt="BOOK"></a>
+
+  <button class="burger" id="burger" aria-label="เปิดเมนู" aria-expanded="false" aria-controls="menu">
+    <span></span><span></span><span></span>
+  </button>
+
+  <nav class="menu" id="menu">
+    <a href="#home" class="active">Home</a>
+    <a href="#about">About</a>
+    <a href="#pages">Pages</a>
+    <a href="#contact">Contact us</a>
+    <a href="#contact" class="cta">Order now!</a>
+  </nav>
+</header>
+
+<!--
+  STAGE = ผืนผ้าใบกว้าง 1366px เท่าภาพต้นฉบับ
+  ทุกชิ้นวางด้วยพิกัดพิกเซลของต้นฉบับ (inline style: left / top / width)
+  แล้ว JS จะย่อ/ขยายทั้งผืนให้พอดีหน้าจอ -> ตำแหน่งและรูปทรงไม่เพี้ยน
+-->
+<div class="stage-wrap" id="stageWrap">
+<div class="stage" id="stage">
+
+  <!-- ===== สีพื้นหลัง (สูง 1300px) ===== -->
+  <div class="bg" style="height:1300px;background:linear-gradient(180deg,
+      #78b2e2 0px,
+      #609fdd 42px,
+      #488cd8 82px,
+      #3078d3 122px,
+      #1a66cd 162px,
+      #1855bc 202px,
+      #1645ab 242px,
+      #14359a 282px,
+      #12258a 322px,
+      #101579 362px,
+      #0e0468 402px,
+      #0b0055 452px,
+      #090041 502px,
+      #03001a 602px,
+      #000006 652px,
+      #01000c 702px,
+      #040020 752px,
+      #070033 802px,
+      #090047 852px,
+      #0c005b 902px,
+      #0f0b6f 952px,
+      #10177b 982px,
+      #122388 1012px,
+      #132f94 1042px,
+      #153ba1 1072px,
+      #1647ad 1102px,
+      #1853ba 1132px,
+      #1a5fc6 1162px,
+      #216dd0 1192px,
+      #337bd4 1222px,
+      #4589d7 1252px,
+      #5798db 1282px,
+      #5c9cdc 1300px)"></div>
+
+  <!-- จุดยึดลิงก์เมนู -->
+  <i class="anchor" id="home"  style="top:0;height:700px"></i>
+  <i class="anchor" id="about" style="top:700px;height:220px"></i>
+  <i class="anchor" id="pages" style="top:920px;height:380px"></i>
+
+  <!-- ================= HERO ================= -->
+  <div class="glass-card" style="left:50px;top:22px;width:785px;height:628px;
+       background:linear-gradient(165deg,rgba(255,255,255,.44) 0%,rgba(130,170,255,.22) 35%,rgba(90,130,240,.09) 65%,rgba(20,20,150,.04) 100%)"></div>
+
+  <h1 class="q1">“Tell me, Muse,</h1>
+  <h1 class="q2">of the man of many ways...”</h1>
+
+  <p class="intro">
+    กล่าวเล่าถึง โอดิสซิอุส (Odysseus) กษัตริย์แห่งอิธากา ผู้พยายามเดินทางกลับบ้านหลังสิ้นสุดสงครามกรุงทรอย
+    แต่การเดินทางที่ควรจะใช้เวลาไม่นานกลับยืดเยื้อยาวนานถึง 10 ปี เพราะเขาและลูกเรือต้องเผชิญกับอุปสรรคจากทั้ง
+    มนุษย์ สัตว์ประหลาด และเหล่าเทพเจ้า ไม่ว่าจะเป็น . .
+  </p>
+
+  <ul class="trials">
+    <li><img src="images/bullet point.png" alt="">ยักษ์ตาเดียวในถ้ำที่จองจำ</li>
+    <li><img src="images/bullet point.png" alt="">ฝูงเงือกลวงล่อชักจูงนักเดินเรือ</li>
+    <li><img src="images/bullet point.png" alt="">สองอสุรกายแห่งท้องสมุทรกับดักนักเดินเรือ</li>
+    <li><img src="images/bullet point.png" alt="">องค์เทพแห่งมหาสมุทรผู้พิโรธ</li>
+  </ul>
+
+  <!-- ของตกแต่งฝั่งหนังสือ (กำหนดแค่ left/top/width — ความสูงคำนวณตามสัดส่วนรูปเอง) -->
+  <img class="deco" src="images/cloud 1.png" alt="" style="left:830px; top:105px; width:215px; height:295px; z-index:3"> <!-- swirl + นก ข้างหนังสือ -->
+  <img class="deco" src="images/odessey book.png" alt="หนังสือ The Odyssey of Homer" style="left:895px; top:77px; width:340px; height:510px; z-index:2">
+    <img class="deco" src="images/flower.png" alt="" style="left:930px; top:247px; width:380px; height:400px; z-index:3"> <!-- วงโค้ง + ดอกโบตั๋น + คลื่น ใต้หนังสือ -->
+  <img class="deco" src="images/coral.png"        alt="" style="left:0px;   top:402px; width:375px; height:265px; z-index:3">
+
+  <!-- ================= ABOUT ================= -->
+  <img class="deco" src="images/flower 2.png" alt="" style="left:18px; top:710px; width:112px; height:auto"> <!-- flowers ข้างหัวข้อ -->
+
+  <h2 class="about-title">ผจญภัยไปกับวีรบุรุษผู้ห้าวหาญ<span>..</span></h2>
+
+  <svg class="swoosh" viewBox="0 0 540 50" preserveAspectRatio="none" aria-hidden="true"
+       style="left:125px;top:780px;width:525px;height:42px">
+    <path d="M2 38 C 120 10, 360 6, 538 6" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+  </svg>
+
+  <p class="about-sub">
+    ต่อสู้ ฝ่าฟันเอาชนะอุปสรรคไปพร้อมกับโอดิซิอุส<br>
+    เรียนรู้ที่จะผ่านวิกฤติด้วยความปราดเปรื่องและมีไหวพริบ พร้อมหลักการใช้ชีวิตที่น่านับถือแห่งผู้พิชิต
+  </p>
+
+  <img class="deco" src="images/fish.png" alt="" style="left:950px; top:692px; width:500px; height:205px">
+
+  <!-- ================= CARDS ================= -->
+  <article class="card" style="left:90px;top:924px;width:371px;height:289px;
+       background:linear-gradient(180deg,rgba(8,8,110,.30) 0%,rgba(40,80,205,.55) 55%,rgba(135,178,255,.88) 100%)">
+    <img src="images/icon 1.png" alt="">
+    <h3>ตำนานปรกรณัมอันน่าตื่นเต้น</h3>
+    <p>ได้รู้จักเทพเจ้า สัตว์ประหลาด และตัวละครในตำนานกรีกที่มีเอกลักษณ์</p>
+  </article>
+
+  <article class="card" style="left:485px;top:924px;width:372px;height:289px;
+       background:linear-gradient(180deg,rgba(8,8,110,.30) 0%,rgba(40,80,205,.55) 55%,rgba(135,178,255,.88) 100%)">
+    <img src="images/icon 2.png" alt="">
+    <h3>การเอาชีวิตรอดและการแก้ปัญหา</h3>
+    <p>เรียนรู้การใช้ไหวพริบ ความกล้าหาญ และการตัดสินใจเพื่อเอาชีวิตรอดจากอุปสรรค</p>
+  </article>
+
+  <article class="card small" style="left:882px;top:924px;width:371px;height:289px;
+       background:linear-gradient(180deg,rgba(8,8,110,.30) 0%,rgba(40,80,205,.55) 55%,rgba(135,178,255,.88) 100%)">
+    <img src="images/icon 3.png" alt="">
+    <h3>คุณค่าของครอบครัวและความภักดี</h3>
+    <p>เข้าใจถึงความสำคัญของบ้าน ครอบครัว ความซื่อสัตย์ และความสัมพันธ์ระหว่างมนุษย์ ซึ่งยังคงเกี่ยวข้องกับชีวิตในปัจจุบัน</p>
+  </article>
+
+  <!-- ================= BOTTOM BAR (คำคมอยู่ในแถบ) ================= -->
+  <footer class="bottom-bar" id="contact">
+    <p class="band-q1">“ การเดินทางที่ยาวนานที่สุดในชีวิต อาจไม่ใช่การเดินทางไปให้ไกลที่สุด . .</p>
+    <p class="band-q2">แต่คือการเดินทางกลับไปหาสิ่งที่ <b>สำคัญ</b> ที่สุดสำหรับเรา ”</p>
   </footer>
 
-  <!-- Bootstrap JavaScript -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- ของตกแต่งล่างสุด (อยู่บนสุด) -->
+  <img class="deco" src="images/shell.png"    alt="" style="left:5px;  top:1130px; width:200px; height:150px; z-index:7">
+  <img class="deco" src="images/cloud 2.png"  alt="" style="left:1070px; top:1167px; width:295px; height:130px; z-index:7">
 
-  <!-- Custom JavaScript -->
-  <script src="js/script.js"></script>
+</div>
+</div>
 
+<script>
+const topbar = document.getElementById('topbar');
+const burger = document.getElementById('burger');
+const menu   = document.getElementById('menu');
+const stage  = document.getElementById('stage');
+const wrap   = document.getElementById('stageWrap');
+const links  = [...menu.querySelectorAll('a:not(.cta)')];
+const W = 1366, H = 1438;
+
+/* ย่อ/ขยายผืน 1366px ให้พอดีความกว้างหน้าจอ (รูปทรงคงเดิม) */
+function fit(){
+  const s = document.documentElement.clientWidth / W;
+  stage.style.transform = 'scale(' + s + ')';
+  wrap.style.height = (H * s) + 'px';
+}
+fit();
+window.addEventListener('resize', fit);
+
+/* topbar หด + เงาเมื่อเลื่อน */
+const onScroll = () => topbar.classList.toggle('scrolled', window.scrollY > 20);
+onScroll();
+window.addEventListener('scroll', onScroll, { passive:true });
+
+/* เมนูมือถือ */
+burger.addEventListener('click', () => {
+  const open = menu.classList.toggle('open');
+  burger.classList.toggle('open', open);
+  burger.setAttribute('aria-expanded', open);
+});
+menu.addEventListener('click', e => {
+  if (e.target.tagName === 'A') {
+    menu.classList.remove('open');
+    burger.classList.remove('open');
+    burger.setAttribute('aria-expanded', false);
+  }
+});
+
+/* ไฮไลต์ลิงก์ตามส่วนที่กำลังดู */
+const spy = new IntersectionObserver(entries => {
+  entries.forEach(en => {
+    if (en.isIntersecting) {
+      links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + en.target.id));
+    }
+  });
+}, { rootMargin:'-40% 0px -50% 0px' });
+links.forEach(a => { const t = document.querySelector(a.getAttribute('href')); if (t) spy.observe(t); });
+</script>
 </body>
-
 </html>
